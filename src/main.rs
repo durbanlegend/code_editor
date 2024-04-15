@@ -6,13 +6,38 @@
 fn main() -> eframe::Result<()> {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
 
-    let context = egui::Context::default();
-    context.set_pixels_per_point(50.0); // Adjust this value to your preference
+    // let ctx = egui::Context::default();
+
+    // These no do trick here. see app itself
+    // ctx.set_pixels_per_point(1.0); // Adjust this value to your preference
+    // ctx.set_zoom_factor(5.0);
+
+    // use egui::FontFamily::Proportional;
+    // use egui::FontId;
+    // use egui::TextStyle::*;
+
+    // // Get current context style
+    // let mut style = (*ctx.style()).clone();
+
+    // // Redefine text_styles
+    // style.text_styles = [
+    //     (Heading, FontId::new(60.0, Proportional)),
+    //     (Name("Heading2".into()), FontId::new(50.0, Proportional)),
+    //     (Name("Context".into()), FontId::new(46.0, Proportional)),
+    //     (Body, FontId::new(36.0, Proportional)),
+    //     (Monospace, FontId::new(28.0, Proportional)),
+    //     (Button, FontId::new(28.0, Proportional)),
+    //     (Small, FontId::new(10.0, Proportional)),
+    // ]
+    // .into();
+
+    // // Mutate global style with above changes
+    // ctx.set_style(style);
 
     let native_options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_inner_size([800.0, 600.0])
-            .with_min_inner_size([600.0, 440.0])
+            .with_inner_size([400.0, 300.0])
+            .with_min_inner_size([300.0, 220.0])
             .with_icon(
                 // NOTE: Adding an icon is optional
                 eframe::icon_data::from_png_bytes(&include_bytes!("../assets/icon-256.png")[..])
@@ -21,8 +46,8 @@ fn main() -> eframe::Result<()> {
         ..Default::default()
     };
     eframe::run_native(
-        "Code editor",
+        "⌨️ Code Editor",
         native_options,
-        Box::new(|cc| Box::new(eframe_template::TemplateApp::new(cc))),
+        Box::new(|cc| Box::new(eframe_template::CodeEditor::new(cc))),
     )
 }

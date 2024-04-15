@@ -1,12 +1,12 @@
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[derive(serde::Deserialize, serde::Serialize)]
 #[serde(default)] // if we add new fields, give them default values when deserializing old state
-pub struct TemplateApp {
+pub struct CodeEditor {
     language: String,
     code: String,
 }
 
-impl Default for TemplateApp {
+impl Default for CodeEditor {
     fn default() -> Self {
         Self {
             language: "rs".into(),
@@ -20,12 +20,13 @@ fn main() {
     }
 }
 
-impl TemplateApp {
+impl CodeEditor {
     /// Called once before the first frame.
     #[must_use]
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         // This is also where you can customize the look and feel of egui using
         // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
+        cc.egui_ctx.set_zoom_factor(1.2);
 
         // Load previous app state (if any).
         // Note that you must enable the `persistence` feature for this to work.
@@ -33,11 +34,11 @@ impl TemplateApp {
             return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
         }
 
-        TemplateApp::default()
+        CodeEditor::default()
     }
 }
 
-impl eframe::App for TemplateApp {
+impl eframe::App for CodeEditor {
     /// Called by the framework to save state before shutdown.
     fn save(&mut self, storage: &mut dyn eframe::Storage) {
         eframe::set_value(storage, eframe::APP_KEY, self);
@@ -70,28 +71,6 @@ impl eframe::App for TemplateApp {
         egui::CentralPanel::default().show(ctx, |ui| {
             let Self { language, code } = self;
 
-            if cfg!(feature = "syntect") {
-                ui.horizontal(|ui| {
-                    ui.label("Language:");
-                    ui.text_edit_singleline(language);
-                });
-                ui.horizontal_wrapped(|ui| {
-                    ui.spacing_mut().item_spacing.x = 0.0;
-                    ui.label("Syntax highlighting powered by ");
-                    ui.hyperlink_to("syntect", "https://github.com/trishume/syntect");
-                    ui.label(".");
-                });
-            } else {
-                ui.horizontal_wrapped(|ui| {
-                    ui.spacing_mut().item_spacing.x = 0.0;
-                    ui.label("Compile the demo with the ");
-                    ui.code("syntax_highlighting");
-                    ui.label(" feature to enable more accurate syntax highlighting using ");
-                    ui.hyperlink_to("syntect", "https://github.com/trishume/syntect");
-                    ui.label(".");
-                });
-            }
-
             let mut theme = egui_extras::syntax_highlighting::CodeTheme::from_memory(ui.ctx());
             ui.collapsing("Theme", |ui| {
                 ui.group(|ui| {
@@ -112,7 +91,7 @@ impl eframe::App for TemplateApp {
                     egui::TextEdit::multiline(code)
                         .font(egui::TextStyle::Monospace) // for cursor height
                         .code_editor()
-                        .desired_rows(10)
+                        .desired_rows(25)
                         .lock_focus(true)
                         .desired_width(f32::INFINITY)
                         .layouter(&mut layouter),
