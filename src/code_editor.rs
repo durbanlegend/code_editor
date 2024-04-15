@@ -28,7 +28,10 @@ impl CodeEditor {
         // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
         let ctx = &cc.egui_ctx;
         ctx.set_zoom_factor(1.2);
-
+        // ctx.set_visuals(egui::Visuals {
+        //     extreme_bg_color: Color32::LIGHT_GRAY,
+        //     ..Default::default()
+        // });
 
         // Load previous app state (if any).
         // Note that you must enable the `persistence` feature for this to work.
