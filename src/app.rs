@@ -29,29 +29,6 @@ impl CodeEditor {
         let ctx = &cc.egui_ctx;
         ctx.set_zoom_factor(1.2);
 
-        // An example of changing the style
-        // use egui::FontFamily::Proportional;
-        // use egui::FontId;
-        // use egui::TextStyle::*;
-
-        // // Get current context style
-        // let mut style = (*ctx.style()).clone();
-
-        // // Redefine text_styles
-        // style.text_styles = [
-        //     (Heading, FontId::new(30.0, Proportional)),
-        //     (Name("Heading2".into()), FontId::new(25.0, Proportional)),
-        //     (Name("Context".into()), FontId::new(23.0, Proportional)),
-        //     (Body, FontId::new(18.0, Proportional)),
-        //     (Monospace, FontId::new(14.0, Proportional)),
-        //     (Button, FontId::new(14.0, Proportional)),
-        //     (Small, FontId::new(5.0, Proportional)),
-        // ]
-        // .into();
-
-        // // Mutate global style with above changes
-        // ctx.set_style(style);
-
         // Load previous app state (if any).
         // Note that you must enable the `persistence` feature for this to work.
         if let Some(storage) = cc.storage {
