@@ -29,6 +29,7 @@ impl CodeEditor {
         let ctx = &cc.egui_ctx;
         ctx.set_zoom_factor(1.2);
 
+
         // Load previous app state (if any).
         // Note that you must enable the `persistence` feature for this to work.
         if let Some(storage) = cc.storage {
