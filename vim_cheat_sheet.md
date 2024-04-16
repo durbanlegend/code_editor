@@ -78,6 +78,16 @@ O = start new line above cursor
 
 ### esc to return to normal mode
 
+u = undo
+
+ctrl + r = redo
+
+:! + [bash command] = run command in terminal
+
+$ = end of line
+
+^ = start of line (equivalient to "0 - w")
+
 gg = go to top of file
 
 G = go to bottom of file
@@ -93,6 +103,10 @@ w = next word
 e = end of word
 
 b = previous word
+
+r = replace character under cursor with character that follows
+
+cw = change from current cursor position to end of word (will remove up to end of word and drop into insert mode)
 
 y = yank
 
@@ -128,13 +142,19 @@ ctrl + o = go back from jump to definition
 
 [ or ] - d = cycle through diagnostics
 
+space - / = comment/uncomment current line/selection
+
 space - ff = find file (ctrl + p/n to scroll back through search history, ctrl+j/k or tab/shift to navigate to next/previous result)
 
 space - fw = find word in working dir
 
+space - fb = find open buffer
+
 space - ft = find theme/colour scheme
 
 space - lD = view all diagnostics
+
+ESCAPE TWICE TO EXIT ANY OF THE ABOVE
 
 space - ld = show full detail on diagnostic
 
