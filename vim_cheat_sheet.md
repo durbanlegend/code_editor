@@ -48,6 +48,18 @@ leader - z = zoom in/out of selected pane
 
 leader - o = cycle through panes on current window
 
+leader - , = rename current window
+
+leader - < window menu?
+
+leader - > pane menu?
+
+leader - : = command menu
+    :resize-pane -R/L/U/D 15
+        (Right/Left/Up/Down, pick one)
+
+leader - alt + arrow = resize pane (has problems on mac terminals, use above command or modify startup script to set pane size rather)
+
 # nvim
 
 ## normal
@@ -168,7 +180,9 @@ space - tv = open vertical split terminal (th for horizontal, tf for floating)
 
 space - gg = open lazygit, q to quit, p to pull, P to push, space to stage/unstage file, c to commit, ctrl + u/d to scroll up or down in current file
 
-ctrl + hjkl = navigate panes within nvim
+ctrl + hjkl = navigate selected pane within nvim
+
+ctrl - [n] - [+/-/</>] = for current pane, expand/shrink(vertical), shrink/expand horizontally by n columns/rows
 
 space - q = quit pane
 
