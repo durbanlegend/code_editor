@@ -1,7 +1,6 @@
 [package]
-name = "eframe_template"
+name = "egui_code_editor"
 version = "0.1.0"
-authors = ["Emil Ernerfeldt <emil.ernerfeldt@gmail.com>"]
 edition = "2021"
 rust-version = "1.72"
 
@@ -41,7 +40,6 @@ default = ["syntect"]
 
 ## Enable better syntax highlighting using [`syntect`](https://docs.rs/syntect).
 syntect = ["egui_extras/syntect"]
-
 
 
 [patch.crates-io]
